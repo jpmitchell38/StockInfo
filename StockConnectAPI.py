@@ -67,7 +67,7 @@ def getStockData(nameOfStock, numOfDays):
     if len(data) == 0:
         messagebox.showerror("Error", nameOfStock + " is not a valid ticker;")
         exit(1)
-
+    
     data["Date"] = data.index
     data = data[["Date", "Open", "High", 
                 "Low", "Close", "Adj Close", "Volume"]]
