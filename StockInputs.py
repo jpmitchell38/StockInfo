@@ -18,7 +18,10 @@ def getTickers():
         ticker = ticker.replace(" ", "")
         tickerL = ticker.split(",")
     else:
-        messagebox.showerror("Error", "Invalid ticker or format;\n Correct ticker format: AAPL")
+        if ticker == "":
+            messagebox.showerror("Error", "Invalid ticker or format;\n Can not leave empty")
+            exit(1)
+        messagebox.showerror("Error", "Invalid ticker or format")
         exit(1)
     return tickerL
 

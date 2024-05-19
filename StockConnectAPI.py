@@ -1,6 +1,8 @@
 from tkinter import messagebox
 from datetime import date, timedelta
 import yfinance as yf #pip install yfinance
+import contextlib
+import os
 
 
 
@@ -55,12 +57,15 @@ def getStockData(nameOfStock, numOfDays):
     startdate = date.today() - timedelta(days=int(numOfDays))
     startdate = startdate.strftime("%Y-%m-%d")
 
-    data = yf.download(nameOfStock, 
+    with open(os.devnull, 'w') as fnull:
+            with contextlib.redirect_stderr(fnull):
+                data = yf.download(nameOfStock, 
                             start=startdate, 
                             end=enddate, 
                             progress=False)
+
     if len(data) == 0:
-        messagebox.showerror("Error", "Invalid ticker or format;\n Correct ticker format: AAPL")
+        messagebox.showerror("Error", nameOfStock + " is not a valid ticker;")
         exit(1)
 
     data["Date"] = data.index
