@@ -32,15 +32,27 @@ def runWindow():
             exit(1)
         days = input
         frame.destroy() 
+    
+    def disable_event():
+        pass
+
+    def close_win():
+        frame.destroy()
+        exit(1)
+
+    def key_pressed(event):
+        callNext()
 
 
     frame = tk.Tk()
     frame.title("My window")
-    frame.geometry('300x200') 
+    frame.geometry('350x250') 
+    frame.configure(background='light blue')
 
     text_var = tk.StringVar()
     text_var.set("Enter the ticker symbols, seperated by a comma")
-    label = tk.Label(frame, textvariable=text_var, height=1, width=40, font=("Times New Roman", 12))
+    label = tk.Label(frame, textvariable=text_var, height=1, width=40, font=("Times New Roman", 11, 'bold'))
+    label.config(bg="light blue")
     label.pack(pady=(10,0)) 
 
     inputtxt1 = tk.Text(frame, 
@@ -51,7 +63,8 @@ def runWindow():
 
     text_var = tk.StringVar()
     text_var.set("How many days back do you want data to go?")
-    label = tk.Label(frame, textvariable=text_var, height=1, width=40, font=("Times New Roman", 12))
+    label = tk.Label(frame, textvariable=text_var, height=1, width=40, font=("Times New Roman", 11, 'bold'))
+    label.config(bg="light blue")
     label.pack(pady=(10,0)) 
 
     inputtxt2 = tk.Text(frame, 
@@ -60,16 +73,32 @@ def runWindow():
     inputtxt2.pack()
 
 
-    
     printButton = tk.Button(frame, 
                         text = "See Graphs",  
                         command = callNext,
                         padx=10,
                         pady=5,
-                        width=15,
-                        font=("Arial", 12)) 
-    printButton.pack(pady=16) 
+                        width=12,
+                        cursor="hand2",
+                        activebackground="dark grey", 
+                        font=("Arial", 12, 'bold')) 
+    printButton.pack(pady=20) 
 
+
+    printButton = tk.Button(frame, 
+                        text = "Exit",  
+                        command = close_win,
+                        padx=10,
+                        pady=5,
+                        width=12,
+                        cursor="hand2",
+                        activebackground="red3", 
+                        font=("Arial", 12, 'bold'),
+                        bg="red")
+    printButton.pack() 
+
+    frame.bind('<Return>',key_pressed)
+    frame.protocol("WM_DELETE_WINDOW", disable_event)
     frame.resizable(False, False)
     frame.eval('tk::PlaceWindow . center')
     frame.mainloop() 
