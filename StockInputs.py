@@ -10,28 +10,52 @@ def runWindow():
     def callNext():
         global tickerL
         global days
-
-        input = inputtxt1.get(1.0, "end-1c") 
-
-        if input != "" and type(input) != type(None):
-            input = input.upper()
-            input = input.replace(" ", "")
-            tickerL = input.split(",")
-        else:
-            if input == "":
-                messagebox.showerror("Error", "Invalid ticker or format;\n Can not leave empty")
-                exit(1)
-            messagebox.showerror("Error", "Invalid ticker or format")
-            exit(1)
-
-        input = inputtxt2.get(1.0, "end-1c") 
+        
+        count = 0
+        String = ""
         try:
-            int(input)   
+            input1 = inputtxt1.get(1.0, "end-1c") 
+            
+            if input1 == "":
+                String += "Ticker input cannot be empty\n"
+                count += 1
+            else:
+                input1 = input1.upper()
+                input1 = input1.replace(" ", "")
+                tickerL = input1.split(",")
+                
+                passed = 0
+                for tick in tickerL:
+                    if tick == "" and passed == 0:
+                        String += "Invalid ticker format\n"
+                        count += 1
+                        passed += 1
+            
+            
+ 
+            try:
+                input2 = inputtxt2.get(1.0, "end-1c")
+                int(input2)   
+            except:
+                if input2 == "":
+                    if input1 == "":
+                        String = "Inputs cannot be empty"
+                    else:
+                        String += "How many days input cannot be empty\n"
+                    count += 1
+                else:
+                    String += "Invalid integer\n"
+                    count += 1
+            else:
+                days = input2
         except:
-            messagebox.showerror("Error", "Invalid integer; Example format: 60")
-            exit(1)
-        days = input
-        frame.destroy() 
+            String += "this doesnt get called"
+            count += 1
+        else:
+            if count == 0:
+                frame.destroy() 
+            else:
+                messagebox.showerror("Error", String)
     
     def disable_event():
         pass
