@@ -2,26 +2,6 @@ import matplotlib.pyplot as plt #pip install matplotlib
 
 from StockConnectAPI import *
 
-
-def outputConsole(listOfTickers, days):
-    """
-    loops through the list of tickers and adds information
-    about that stock to a string
- 
-    Args:
-        listOfTickers (list): list of tickers
-        days (int): how many days back the information should go.
- 
-    Returns:
-        string: information about the stock
-    """
-    s = ""
-    for ticker in listOfTickers:
-        data = getStockData(ticker, days)
-        pIM, cIP = getStatsReturn(data, days)
-        s += ticker + "\n - " + pIM + "\n - " + cIP + "\n\n"
-    return s
-
 def graph(listOfTickers, days):
     """
     Loops through the list of tickers and graphs 4 sub plots on one output
@@ -32,14 +12,14 @@ def graph(listOfTickers, days):
  
     Returns:
     """
-    s = ""
+    string = ""
     fig, ax = plt.subplots(2, 2, figsize=(15, 10))
 
     # Loop through tickers, get data for each and plot them on each 4 graphs
     for stock in listOfTickers:
         stock_data = getStockData(stock, days)
         pIM, cIP = getStatsReturn(stock_data, days)
-        s += stock + "\n - " + pIM + "\n - " + cIP + "\n\n"
+        string += stock + "\n - " + pIM + "\n - " + cIP + "\n\n"
         
         # Plot Closing Prices
         ax[0, 0].plot(stock_data['Date'], stock_data['Close'], label=stock)
@@ -89,7 +69,7 @@ def graph(listOfTickers, days):
 
     plt.tight_layout()
     plt.show()
-    return s
+    return string
 
 
 def getStatsReturn(data, days):
