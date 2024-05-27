@@ -32,11 +32,14 @@ def graph(listOfTickers, days):
  
     Returns:
     """
+    s = ""
     fig, ax = plt.subplots(2, 2, figsize=(15, 10))
 
     # Loop through tickers, get data for each and plot them on each 4 graphs
     for stock in listOfTickers:
         stock_data = getStockData(stock, days)
+        pIM, cIP = getStatsReturn(stock_data, days)
+        s += stock + "\n - " + pIM + "\n - " + cIP + "\n\n"
         
         # Plot Closing Prices
         ax[0, 0].plot(stock_data['Date'], stock_data['Close'], label=stock)
@@ -86,6 +89,7 @@ def graph(listOfTickers, days):
 
     plt.tight_layout()
     plt.show()
+    return s
 
 
 def getStatsReturn(data, days):

@@ -11,11 +11,13 @@ from StockOutputs import *
 
 
 def main():
-    listOfTickers, days = runWindow()
     tryConnectYahoo()
-
-    print(outputConsole(listOfTickers, days))
-    sys.stdout.flush()
-    graph(listOfTickers, days)
+    
+    listOfTickers, days = runWindow()
+    
+    consoleOutput = graph(listOfTickers, days)
+    print(consoleOutput)
+    
+    # sys.stdout.flush()
           
 main()
