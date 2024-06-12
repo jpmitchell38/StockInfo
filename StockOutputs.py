@@ -15,11 +15,8 @@ def graph(listOfTickers, days):
     string = ""
     fig, ax = plt.subplots(2, 2, figsize=(15, 10))
 
-    # Loop through tickers, get data for each and plot them on each 4 graphs
     for stock in listOfTickers:
         stock_data = getStockData(stock, days)
-        pIM, cIP = getStatsReturn(stock_data, days)
-        string += stock + "\n - " + pIM + "\n - " + cIP + "\n\n"
         
         # Plot Closing Prices
         ax[0, 0].plot(stock_data['Date'], stock_data['Close'], label=stock)
@@ -68,30 +65,6 @@ def graph(listOfTickers, days):
         ax[1, 1].spines[["top", "right"]].set_visible(False)
 
     plt.tight_layout()
-    plt.show()
-    return string
+    plt.savefig('myIMG.png')
+    plt.close('all')
 
-
-def getStatsReturn(data, days):
-    """
-    Gets the change in price and percent increase/decrease for the stock
- 
-    Args:
-        data (dataFrame): The first number.
-        days (int): how many days back the information should go.
- 
-    Returns:
-        string: a string put together of all the stats for the given stock(s)
-    """
-    changeInPrice = round((float(data["Close"].iloc[0]) - float(data["Close"].iloc[len(data) - 1])) * -1, 3)
-    percentIncrease = round((((float(data["Close"].iloc[0]) - float(data["Close"].iloc[len(data) - 1])) * -1) / (float(data["Close"].iloc[0]))) * 100, 2)
-
-    if percentIncrease > 0:
-        strPer = "+" + str(percentIncrease)
-    else:
-        strPer = str(percentIncrease)
-
-    pIM = "Percent change over " + str(days) +" days: " + str(strPer) + "%"
-    cIP = "Change in price over " + str(days) +" days: $" + str(changeInPrice) 
-
-    return pIM, cIP

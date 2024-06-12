@@ -1,43 +1,8 @@
-from tkinter import messagebox
+# from tkinter import messagebox
 from datetime import date, timedelta
 import yfinance as yf #pip install yfinance
 import contextlib
 import os
-
-
-
-def tryConnectYahoo():
-    """
-    Tries to connect with yahoo finance with apple just to make sure it can connect.
-    If it fails to connect, it shuts down the program and spits out an error.
- 
-    Args:
- 
-    Returns:
-
-    """
-    today = date.today()
-
-    enddate = today.strftime("%Y-%m-%d")
-    startdate = date.today() - timedelta(days=int(30))
-    startdate = startdate.strftime("%Y-%m-%d")
-
-    try:
-        data = yf.download("AAPL", 
-                            start=startdate, 
-                            end=enddate, 
-                            progress=False)
-        data["Date"] = data.index
-        data = data[["Date", "Open", "High", 
-                "Low", "Close", "Adj Close", "Volume"]]
-        data.reset_index(drop=True, inplace=True)
-    except:
-        messagebox.showerror("Error", "Can't connect to yahoo currently")
-        exit(1)
-    finally:
-        if len(data) == 0:
-            messagebox.showerror("Error", "Can't connect to yahoo currently")
-            exit(1)
 
 def getStockData(nameOfStock, numOfDays):
     """
@@ -65,7 +30,7 @@ def getStockData(nameOfStock, numOfDays):
                             progress=False)
 
     if len(data) == 0:
-        messagebox.showerror("Error", nameOfStock + " is not a valid ticker;")
+        # messagebox.showerror("Error", nameOfStock + " is not a valid ticker;")
         exit(1)
     
     data["Date"] = data.index
