@@ -4,14 +4,35 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* background-color: #09080a; */
 }
 
-.page {
-    background-color: tan;
+body {
+    background: url('../stockbackground.jpg') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
 }
+
+*:focus {
+    outline: none;
+}
+
+/* .page {
+    background-color: none;
+} */
 
 .title {
-    padding-bottom: 10px;
+    font-weight: bold;
+    color: orange;
+    font-size: xxx-large;
+}
+
+.titlediv {
+    border: 2px solid orange;
+    width: 220px;
+    margin: auto;
+    margin-bottom: 30px;
 }
 
 .top {
@@ -27,21 +48,46 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-bottom: 30px;
+    padding-bottom: 20px;
 }
 
 .firstinput {
     display: grid;
+    margin-right: 20px;
+}
+
+.firstbox {
+    background-color: white;
+    border: 1px solid orange;
+    color: orange;
+}
+
+.firsttext {
+    color: orange;
+    margin-bottom:5px;
 }
 
 .secondinput {
     display: grid;
 }
 
+.secondbox {
+    width: 70px;
+    background-color: white;
+    border: 1px solid orange;
+    color: orange;
+}
+
+.secondtext {
+    color: orange;
+    margin-bottom:5px;
+}
+
 .submitbut {
     width: 150px;
     height: 50px;
     font-size: x-large;
+    color: orange;
 }
 
 .bottom {

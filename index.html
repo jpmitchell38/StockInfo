@@ -9,16 +9,18 @@
 <body>
     <div class="page">
         <div class="top">
-            <h1 class="title">Submit your data</h1>
+            <div class="titlediv">
+                <h1 class="title">StockInfo</h1>
+            </div>
             <form action="" method="POST" class="form">
                 <div class="bothinputs">
                     <div class="firstinput">
-                        <label for="first_input_data">List of Tickers:</label>
-                        <input type="text" id="first_input_data" name="first_input_data" required>
+                        <label for="first_input_data" class="firsttext">List of Tickers (seperated by a comma):</label>
+                        <input type="text" id="first_input_data" name="first_input_data" class="firstbox" required>
                     </div>
                     <div class="secondinput">
-                        <label for="second_input_data">Days back:</label>
-                        <input type="text" id="second_input_data" name="second_input_data" required>
+                        <label for="second_input_data" class="secondtext">Days back:</label>
+                        <input type="text" id="second_input_data" name="second_input_data" class="secondbox" required>
                     </div>
                 </div>
                     <button type="submit" class="submitbut">Submit</button>
