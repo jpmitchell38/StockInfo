@@ -25,14 +25,15 @@ body {
 .title {
     font-weight: bold;
     color: orange;
-    font-size: xxx-large;
+    font-size: 65px;
 }
 
 .titlediv {
-    border: 2px solid orange;
-    width: 220px;
+    /* border: 2px solid orange; */
+    /* width: 220px; */
     margin: auto;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    font-family: Courier New, monospace;
 }
 
 .top {
@@ -53,22 +54,33 @@ body {
 
 .firstinput {
     display: grid;
-    margin-right: 20px;
+    font-size: 20px;
+    margin-bottom: 6px;
 }
 
 .firstbox {
     background-color: white;
     border: 1px solid orange;
     color: orange;
+    margin: auto;
+    width: 300px;
+    padding: 3px;
+    font-weight: bold;
+    padding-left: 7px;
 }
 
 .firsttext {
-    color: orange;
-    margin-bottom:5px;
+    color: darkgrey;
+    font-weight: bold;
+    margin-bottom:3px;
+    font-size: 22px;
+    font-family: DejaVu Sans Mono, monospace;
 }
 
 .secondinput {
     display: grid;
+    font-size: 20px;
+    margin-bottom: 35px;
 }
 
 .secondbox {
@@ -76,11 +88,19 @@ body {
     background-color: white;
     border: 1px solid orange;
     color: orange;
+    margin:auto;
+    padding: 3px;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 5px;
 }
 
 .secondtext {
-    color: orange;
-    margin-bottom:5px;
+    color: darkgrey;
+    font-weight: bold;
+    margin-bottom: 3px;
+    font-size: 22px;
+    font-family: DejaVu Sans Mono, monospace;
 }
 
 .submitbut {
@@ -88,6 +108,9 @@ body {
     height: 50px;
     font-size: x-large;
     color: orange;
+    font-weight: bold;
+    border: 2px solid orange;
+    background-color: white;
 }
 
 .bottom {
@@ -95,7 +118,8 @@ body {
     /* padding-bottom: 50px */
 }
 
-.img {
+.bottom .img {
     width: 1000px;
     height: auto;
+    border: 2px solid orange;
 }
