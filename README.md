@@ -2,7 +2,10 @@
 
 This project asks the user for a list of stocks, and how many days back do you want to grab data from. It fetches the data then has an output of four graphs. Closing Price vs Time, Closing Price vs Volume, Volume Vs Time, High-Low Range vs Time.  
 
-![alt text](<docs/Screenshot 2024-07-15 142147.png>)
+<div style="display: flex; justify-content: space-between;">
+    <img src="docs/Screenshot 2024-07-15 142147.png" alt="Graph 1" style="width: 45%;"/>
+    <img src="docs/Screenshot 2024-07-15 142147.png" alt="Graph 2" style="width: 45%;"/>
+</div>
 
 ## How Its Made:
 
