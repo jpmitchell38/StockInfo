@@ -1,8 +1,8 @@
 # StockInfo
 
-This project asks the user for a list of stocks, and how many days back do you want to grab data from. It fetches the data then has an output of four graphs. Closing Price vs Time, Closing Price vs Volume, Volume Vs Time, High-Low Range vs Time.  
+This project allows users to input a list of stocks and specify the number of days back from which to retrieve data. It fetches this data and presents four insightful graphs: Closing Price vs Time, Closing Price vs Volume, Volume vs Time, and High-Low Range vs Time.
 
-<div style="display: flex; justify-content: space-between; padding-left: 10%;">
+<div style="display: flex; justify-content: space-between;">
     <img src="docs/Screenshot 2024-07-15 142147.png" alt="Graph 1" style="width: 45%;"/>
     <img src="docs/Screenshot 2024-07-15 144409.png" alt="Graph 2" style="width: 45%;"/>
 </div>
@@ -11,7 +11,7 @@ This project asks the user for a list of stocks, and how many days back do you w
 
 Tech used: Python, HTML, CSS
 
-I used python for the backend part of the project, where I can connect to the yahoo finance api and grab data about a stock and put it into a graph. Using the Flask package in python im able to listen to the inputs coming from the website. The html file organizes the different content so im able to style them with css. 
+I utilized Python for the backend of this project, enabling connectivity to the Yahoo Finance API to fetch stock data dynamically. With Flask, I managed incoming inputs from the web interface. The HTML structure neatly organizes content for easy styling with CSS.
 
 ## How to Run
 
@@ -23,6 +23,6 @@ cd into directory (StockInfo)
 
 ```python StockMain.py```
 
-copy the url it gives you that starts with "http://"
+You can copy the URL provided, which starts with "http://"
 
 
