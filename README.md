@@ -7,12 +7,14 @@ This project allows users to input a list of stocks and specify the number of da
     <img src="docs/Screenshot 2024-07-15 144409.png" alt="Graph 2" style="width: 45%;"/>
 </div>
 
+<br>
 ## How Its Made:
 
 Tech used: Python, HTML, CSS
 
 I utilized Python for the backend of this project, enabling connectivity to the Yahoo Finance API to fetch stock data dynamically. With Flask, I managed incoming inputs from the web interface. The HTML structure neatly organizes content for easy styling with CSS.
 
+<br>
 ## How to Run
 
 ###
@@ -29,7 +31,7 @@ I utilized Python for the backend of this project, enabling connectivity to the 
 
 You can copy the URL provided, which starts with "http://"
 
-
+<br>
 ## Side Note
 
-Both the accounts that you see contributed to the projects are both mine
+Both the accounts that you see contributed to the projects are mine
