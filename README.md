@@ -16,15 +16,16 @@ I utilized Python for the backend of this project, enabling connectivity to the 
 ## How to Run
 
 ###
-        ```git clone https://github.com/jpmitchell38/StockInfo.git```
+    git clone https://github.com/jpmitchell38/StockInfo.git
 
 ### 
-    ```cd StockInfo/```
+    cd StockInfo/
 
 ###
-```pip install -r requirements.txt```
+    pip install -r requirements.txt
 
-```python StockMain.py```
+###
+    python StockMain.py
 
 You can copy the URL provided, which starts with "http://"
 
