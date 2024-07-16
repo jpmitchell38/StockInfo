@@ -16,7 +16,7 @@ I utilized Python for the backend of this project, enabling connectivity to the 
 ## How to Run
 
 ###
-<tab><tab>```git clone https://github.com/jpmitchell38/StockInfo.git```
+        ```git clone https://github.com/jpmitchell38/StockInfo.git```
 
 ```cd StockInfo/```
 
