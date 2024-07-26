@@ -6,7 +6,6 @@ matplotlib.use('Agg')
 from StockConnectAPI import *
 from StockOutputs import *
 
-# In the plot titles, put the stock in the titles
 # Put the stocks and the time above the graphs
 
 app = Flask(__name__, template_folder='.', static_url_path='', static_folder='')

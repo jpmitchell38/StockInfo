@@ -6,6 +6,9 @@ This project allows users to input a list of stocks and specify the number of da
     <img src="docs/Screenshot 2024-07-15 142147.png" alt="Graph 1" style="width: 45%;"/>
     <img src="docs/Screenshot 2024-07-15 144409.png" alt="Graph 2" style="width: 45%;"/>
 </div>
+<br>
+Picture 1. Main screen with nothing inputted <br>
+Picture 2. Main screen after data is inputted (page is scrolled down)
 
 <br><br>
 ## How Its Made:
@@ -30,6 +33,6 @@ I utilized Python for the backend of this project, enabling connectivity to the 
 
 You can copy the URL provided, which starts with "http://"
 <br><br>
-## Side Note
+## Note
 
-Both the accounts that you see contributed to the projects are mine
+Both the accounts that contributed to the project are mine
