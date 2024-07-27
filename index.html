@@ -16,11 +16,19 @@
                 <!-- <div class="bothinputs"> -->
                     <div class="firstinput">
                         <label for="first_input_data" class="firsttext">List of Tickers (seperated by a comma):</label>
-                        <input type="text" id="first_input_data" name="first_input_data" class="firstbox" spellcheck="false" placeholder="Ex: aapl, mcd, tsla" required>
+                        <div class="tooltipdiv1"> 
+                            <input type="text" id="first_input_data" name="first_input_data" class="firstbox" spellcheck="false" placeholder="Check Tooltip for format" role="presentation" autocomplete="off" required>  
+                            <span class="tooltip">i</span>
+                            <span class="tooltiptext">Correct Format: aapl, mcd, tsla</span>
+                        </div>
                     </div>
                     <div class="secondinput">
                         <label for="second_input_data" class="secondtext">Days back:</label>
-                        <input type="text" id="second_input_data" name="second_input_data" class="secondbox" spellcheck="false" placeholder="Ex: 100" required>
+                        <div class="tooltipdiv2"> 
+                            <input type="text" id="second_input_data" name="second_input_data" class="secondbox" spellcheck="false" placeholder="Enter" role="presentation" autocomplete="off" required>
+                            <span class="tooltip">i</span>
+                            <span class="tooltiptext">Integer greater than 0</span>
+                        </div>
                     </div>
                 <!-- </div> -->
                     <button type="submit" class="submitbut">Submit</button>
