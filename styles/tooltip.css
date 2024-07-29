@@ -1,0 +1,43 @@
+.tooltip {
+    border-radius: 50%;
+    border: 3px solid;
+    font-size: 12px;
+    font-weight: bold;
+    padding-left: 5px;
+    padding-right: 5px;
+    position: relative;
+    top: -2px;
+    cursor: default;
+    border-color: #EC842C;
+    color: #EC842C;
+  }
+  
+  .tooltip:hover ~ .tooltiptext {
+    visibility: visible;
+  }
+  
+  .tooltiptext {
+    visibility: hidden;
+    width: 300px;
+    background-color: white;
+    color: black;
+    border: 2px solid #EC842C;
+    border-radius: 6px;
+    padding: 5px 10px;
+    position: relative;
+    z-index: 1;
+    font-size: 13px;
+    margin-left: 10px;
+  }
+
+.tooltipdiv1 {
+    padding-left: 215px;
+    display: inline;
+    position: relative;
+}
+
+.tooltipdiv2 {
+    padding-left: 175px;
+    display: inline;
+    position: relative;
+}
