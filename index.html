@@ -37,7 +37,12 @@
             </form>
         </div>
         <div class="bottom">
-            <img src="myIMG.png" alt="" class="img" onerror="this.style.display='none';">
+            {% if message %}
+                <p class="error-message">{{ message }}</p>
+            {% endif %}
+            {% if img_path %}
+                <img src="{{ img_path }}" alt="Stock Graph" class="img" onerror="this.style.display='none';">
+            {% endif %}
         </div>
     </div>
 </body>

@@ -98,3 +98,13 @@
     height: auto;
     border: 2px solid orange;
 }
+
+.error-message {
+    color: red;
+    font-weight: bold;
+    font-size: large;
+    border: 1px solid red;
+    display: inline;
+    background-color: white;
+    padding: 2px 5px;
+}
