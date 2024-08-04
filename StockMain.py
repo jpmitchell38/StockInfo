@@ -61,8 +61,11 @@ def validate_ticker_format2(days_string):
             return True
     return False
 
+@app.route('/scheduled_task', methods=['GET'])
 def scheduled_task():
+    # Code to execute the scheduled task
     print("Scheduled task executed at", datetime.now())
+    return "Task executed", 200
 
 if __name__ == '__main__':
     app.run()
