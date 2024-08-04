@@ -24,8 +24,8 @@ def index():
             
         if not validate_ticker_format2(data2):
             return render_template('index.html', 
-                                   message="Invalid input. Please ensure days back is a number that is greater than 7",
-                                   img_path=img_path)
+                                   message = "Invalid input. Please ensure days back is a number that is greater than 7",
+                                   img_path = img_path)
 
         input = data1.upper()
         input = input.replace(" ", "")
@@ -33,7 +33,11 @@ def index():
         
         days = data2
         
-        graph(tickerL, days)
+        isDataValid, stock = graph(tickerL, days)
+        if not isDataValid:
+            return render_template('index.html', 
+                                   message = stock + " is an invalid ticker",
+                                   img_path = img_path)
                 
                 
         return render_template('index.html', message="", img_path="myIMG.png")

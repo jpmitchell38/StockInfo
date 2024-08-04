@@ -30,12 +30,11 @@ def getStockData(nameOfStock, numOfDays):
                             progress=False)
 
     if len(data) == 0:
-        # messagebox.showerror("Error", nameOfStock + " is not a valid ticker;")
-        exit(1)
-    
-    data["Date"] = data.index
-    data = data[["Date", "Open", "High", 
-                "Low", "Close", "Adj Close", "Volume"]]
-    data.reset_index(drop=True, inplace=True)
+        return False, data
+    else:
+        data["Date"] = data.index
+        data = data[["Date", "Open", "High", 
+                    "Low", "Close", "Adj Close", "Volume"]]
+        data.reset_index(drop=True, inplace=True)
 
-    return data
+        return True, data
