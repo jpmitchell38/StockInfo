@@ -1,6 +1,8 @@
 from flask import Flask, request, render_template #pip install flask
+from datetime import datetime
 import os
 import matplotlib
+
 matplotlib.use('Agg') 
 
 from StockConnectAPI import *
@@ -58,6 +60,9 @@ def validate_ticker_format2(days_string):
         if days >= 7:
             return True
     return False
+
+def scheduled_task():
+    print("Scheduled task executed at", datetime.now())
 
 if __name__ == '__main__':
     app.run()
