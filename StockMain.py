@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template #pip install flask
+from flask import Flask, request, render_template, Response #pip install flask
 from datetime import datetime
 import os
 import matplotlib
@@ -11,9 +11,12 @@ from StockOutputs import *
 app = Flask(__name__, template_folder='.', static_url_path='', static_folder='')
 tickerL = []
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST', 'HEAD'])
 def index():
     img_path = None
+    
+    if request.method == 'HEAD':
+        return Response(status=200)
     
     if request.method == 'POST':
         data1 = request.form['first_input_data']
@@ -61,11 +64,11 @@ def validate_ticker_format2(days_string):
             return True
     return False
 
-@app.route('/scheduled_task', methods=['GET'])
-def scheduled_task():
-    # Code to execute the scheduled task
-    # print("Scheduled task executed at", datetime.now())
-    return "", 200
+# @app.route('/scheduled_task', methods=['GET'])
+# def scheduled_task():
+#     # Code to execute the scheduled task
+#     # print("Scheduled task executed at", datetime.now())
+#     return "", 200
 
 if __name__ == '__main__':
     app.run()
