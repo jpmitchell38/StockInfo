@@ -6,7 +6,8 @@
 }
 
 body {
-    background: url('../images/stockbackground.jpg') no-repeat center center fixed;
+    /* background: url('../images/stockbackground.jpg') no-repeat center center fixed; */
+    background-color: darkgrey;
     background-size: cover;
     margin: 0;
     padding: 0;

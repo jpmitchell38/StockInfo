@@ -35,7 +35,7 @@
 .firstbox {
     background-color: white;
     border: 1px solid orange;
-    color: orange;
+    color: black;
     margin: auto;
     width: 300px;
     padding: 3px;
@@ -45,7 +45,7 @@
 }
 
 .firsttext {
-    color: darkgrey;
+    color: beige;
     font-weight: bold;
     margin-bottom:3px;
     font-size: 22px;
@@ -62,7 +62,7 @@
     width: 70px;
     background-color: white;
     border: 1px solid orange;
-    color: orange;
+    color: black;
     margin:auto;
     padding: 3px;
     font-weight: bold;
@@ -71,7 +71,7 @@
 }
 
 .secondtext {
-    color: darkgrey;
+    color: beige;
     font-weight: bold;
     margin-bottom: 3px;
     font-size: 22px;
