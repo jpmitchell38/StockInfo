@@ -1,10 +1,7 @@
-# from tkinter import messagebox
 from datetime import date, timedelta
 import yfinance as yf #pip install yfinance
-import contextlib
-import os
 
-def getStockData(nameOfStock, numOfDays):
+def getStockData(tickers, numOfDays):
     """
     Connects to the yahoo finance api and grabs data for the given stock,
     for a certain number of days back to present
@@ -22,19 +19,29 @@ def getStockData(nameOfStock, numOfDays):
     startdate = date.today() - timedelta(days=int(numOfDays))
     startdate = startdate.strftime("%Y-%m-%d")
 
-    with open(os.devnull, 'w') as fnull:
-            with contextlib.redirect_stderr(fnull):
-                data = yf.download(nameOfStock, 
-                            start=startdate, 
-                            end=enddate, 
-                            progress=False)
+    ticker_str = ' '.join(tickers)
 
-    if len(data) == 0:
-        return False, data
+    data = yf.download(ticker_str, start=startdate, end=enddate, group_by='ticker', progress=False)
+
+    all_data = []
+    if len(tickers) == 1:
+        if data.empty:
+            return False, "", tickers[0]
+        else:
+            data["Date"] = data.index
+            data = data[["Date", "Open", "High", "Low", "Close", "Adj Close", "Volume"]]
+            data.reset_index(drop=True, inplace=True)
+            all_data.append(data)
     else:
-        data["Date"] = data.index
-        data = data[["Date", "Open", "High", 
-                    "Low", "Close", "Adj Close", "Volume"]]
-        data.reset_index(drop=True, inplace=True)
-
-        return True, data
+        for ticker in tickers:
+            if data.empty:
+                return False, "", tickers[0]
+            elif data[ticker]['Open'].isna().any():
+                return False, "", ticker
+            else:
+                ticker_data = data[ticker]
+                ticker_data["Date"] = ticker_data.index
+                ticker_data = ticker_data[["Date", "Open", "High", "Low", "Close", "Adj Close", "Volume"]]
+                ticker_data.reset_index(drop=True, inplace=True)
+            all_data.append(ticker_data)
+    return True, all_data, ""

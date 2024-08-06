@@ -16,6 +16,9 @@ def graph(listOfTickers, days):
     for x in range(0, len(listOfTickers)):
         if len(listOfTickers) == 1:
             string += str(listOfTickers[x])
+        elif len(listOfTickers) == 2:
+            string += str(listOfTickers[x]) + " and " + str(listOfTickers[x + 1])
+            break
         else:
             if x + 1 == len(listOfTickers):
                 string += "and " + str(listOfTickers[x])
@@ -24,12 +27,13 @@ def graph(listOfTickers, days):
             
     fig, ax = plt.subplots(2, 2, figsize=(15, 10))
 
-    for stock in listOfTickers:
-        validData, stock_data = getStockData(stock, days)
-        if (not validData):
-            return False, stock
-        
-        ax[0, 0].plot(stock_data['Date'], stock_data['Close'], label=stock)
+    validData, stock_data, badTicker = getStockData(listOfTickers, days)
+    if (not validData):
+        return False, badTicker
+
+    count = 0
+    for stock in stock_data:
+        ax[0, 0].plot(stock['Date'], stock['Close'], label=listOfTickers[count])
         ax[0, 0].set_xlabel('Date')
         ax[0, 0].set_ylabel('Closing Price ($)')
         ax[0, 0].set_title('Closing Price of ' + string + ' over Time')
@@ -40,7 +44,7 @@ def graph(listOfTickers, days):
         ax[0, 0].spines[["top", "right"]].set_visible(False)
         ax[0, 0].grid(linewidth=0.50)
 
-        ax[0, 1].scatter(stock_data['Close'], stock_data['Volume'], label=stock, alpha=0.5)
+        ax[0, 1].scatter(stock['Close'], stock['Volume'], label=listOfTickers[count], alpha=0.5)
         ax[0, 1].set_xlabel('Closing Price')
         ax[0, 1].set_ylabel('Volume')
         ax[0, 1].set_title('Closing Price of ' + string + ' over Volume')
@@ -50,7 +54,7 @@ def graph(listOfTickers, days):
         ax[0, 1].spines[["top", "right"]].set_visible(False)
         ax[0, 1].grid(linewidth=0.50)
 
-        ax[1, 0].bar(stock_data['Date'], stock_data['Volume'], label=stock, alpha=0.5)
+        ax[1, 0].bar(stock['Date'], stock['Volume'], label=listOfTickers[count], alpha=0.5)
         ax[1, 0].set_xlabel('Date')
         ax[1, 0].set_ylabel('Volume')
         ax[1, 0].set_title('Volume of ' + string + ' over Time')
@@ -60,9 +64,9 @@ def graph(listOfTickers, days):
         ax[1, 0].spines[["top", "right"]].set_visible(False)
         ax[1, 0].grid(linewidth=0.50)
 
-        ax[1, 1].fill_between(stock_data['Date'], stock_data['High'], stock_data['Low'], alpha=0.3, label=stock)
-        ax[1, 1].plot(stock_data['Date'], stock_data['High'], color='blue', linestyle='--')
-        ax[1, 1].plot(stock_data['Date'], stock_data['Low'], color='green', linestyle='--')  
+        ax[1, 1].fill_between(stock['Date'], stock['High'], stock['Low'], alpha=0.3, label=listOfTickers[count])
+        ax[1, 1].plot(stock['Date'], stock['High'], color='blue', linestyle='--')
+        ax[1, 1].plot(stock['Date'], stock['Low'], color='green', linestyle='--')  
         ax[1, 1].set_xlabel('Date')
         ax[1, 1].set_ylabel('Price ($)')
         ax[1, 1].set_title('High-Low Price Range of ' + string + ' over Time')
@@ -70,6 +74,8 @@ def graph(listOfTickers, days):
         ax[1, 1].yaxis.set_major_formatter('${x:1.2f}')
         ax[1, 1].tick_params(axis='x', labelrotation=30)
         ax[1, 1].spines[["top", "right"]].set_visible(False)
+        
+        count += 1
 
     plt.tight_layout()
     plt.savefig('myIMG.png')
