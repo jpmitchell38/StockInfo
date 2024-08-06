@@ -5,8 +5,8 @@
 This project allows users to input a list of stocks and specify the number of days back from which to retrieve data. It fetches this data and presents four insightful graphs: Closing Price vs Time, Closing Price vs Volume, Volume vs Time, and High-Low Range vs Time.
 
 <div style="display: flex; justify-content: space-evenly;">
-    <img src="docs/Screenshot 2024-08-05 140436.png" alt="Graph 1" style="width: 33%;"/>
-    <img src="docs/Screenshot 2024-08-05 140732.png" alt="Graph 2" style="width: 33%;"/>
+    <img src="docs/Screenshot 2024-08-05 210358.png" alt="Graph 1" style="width: 33%;"/>
+    <img src="docs/Screenshot 2024-08-05 210505.png" alt="Graph 2" style="width: 33%;"/>
 </div>
 <br>
 Picture 1. Main screen with nothing inputted <br>
@@ -21,7 +21,7 @@ I utilized Python for the backend of this project, enabling connectivity to the 
 
 † = See picture
 <div style="display:flex; justify-content: space-evenly;">
-    <img src="docs/Screenshot 2024-08-05 141635.png" alt="Graph 3" style="width: 33%;"/>
+    <img src="docs/Screenshot 2024-08-05 210637.png" alt="Graph 3" style="width: 33%;"/>
 </div>
 
 <br><br>

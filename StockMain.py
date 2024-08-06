@@ -66,10 +66,6 @@ def validate_ticker_format2(days_string):
 
 if __name__ == '__main__':
     app.run()
-
-# def main():
-#     app.run()
     
-#     if os.path.exists("myIMG.png"):
-#         os.remove("myIMG.png")       
-# main()
+    if os.path.exists("myIMG.png"):
+        os.remove("myIMG.png") 
