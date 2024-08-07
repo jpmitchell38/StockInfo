@@ -54,16 +54,18 @@
     color: #000;
 }
 
-.tick-label-div2 {
+/* .tick-label-div2 {
     margin-left: 0.7%;
-}
+} */
 
 .tick-label-div3 {
-    margin-left: 2.2%;
+    /* margin-left: 2.2%; */
+    margin-left: 4%;
 }
 
 .tick-label-div4 {
-    margin-left: 2.7%;
+    /* margin-left: 2.7%; */
+    margin-left: 4%;
 }
 
 .red-tick {
@@ -91,5 +93,5 @@
 }
 
 .red-tick-5 {
-    left: 99.4%;
+    left: 99.2%;
 }
