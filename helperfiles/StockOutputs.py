@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt #pip install matplotlib
 
-from StockConnectAPI import *
+from helperfiles.StockConnectAPI import *
 
 def graph(listOfTickers, days):
     """

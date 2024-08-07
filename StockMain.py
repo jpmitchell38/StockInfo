@@ -5,8 +5,8 @@ import matplotlib
 
 matplotlib.use('Agg') 
 
-from StockConnectAPI import *
-from StockOutputs import *
+from helperfiles.StockConnectAPI import *
+from helperfiles.StockOutputs import *
 
 app = Flask(__name__, template_folder='.', static_url_path='', static_folder='')
 tickerL = []
