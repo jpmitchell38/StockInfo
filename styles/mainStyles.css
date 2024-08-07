@@ -19,7 +19,7 @@
 .top {
     text-align: center;
     padding: 40px;
-    margin-left: 20%;
+    margin-left: 15%;
 }
 
 .top .form {
@@ -85,7 +85,7 @@
     font-family: DejaVu Sans Mono, monospace;
 }
 
-.submitbut {
+.submitbut, .submitbutA {
     width: 150px;
     height: 50px;
     font-size: x-large;
@@ -96,9 +96,13 @@
     cursor: pointer;
 }
 
+.submitbutA {
+    margin-top: 35px;
+}
+
 .bottom {
     text-align: center;
-    margin-left: 20%;
+    margin-left: 15%;
 }
 
 .bottom .img {

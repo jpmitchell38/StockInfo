@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StockInfo</title>
+    <link rel="stylesheet" type="text/css" href="styles/mainStyles.css">
+    <link rel="stylesheet" type="text/css" href="styles/tooltip.css">
+    <link rel="stylesheet" type="text/css" href="styles/resetPage.css">
+    <link rel="stylesheet" type="text/css" href="styles/sidebar.css">
+    <link rel="stylesheet" type="text/css" href="styles/line.css">
+</head>
+<body>
+    <div class="page">
+        <div class="sidebar">
+            <div class="topsidebar">
+                <h1 class="title_sidebar">StockInfo</h1>
+            </div>
+            <div class="bottomsidebar">
+                <a href="/" class="firstboxside">Home</a>
+                <a href="/analysis" class="secondboxside">Analysis</a>
+            </div>
+        </div>
+
+        <div class="topA">
+            <div class="titlediv">
+                <h1 class="title">Analysis</h1>
+            </div>
+            <form action="/analysis" method="POST" class="form">
+                <div class="firstinput">
+                    <label for="first_input_data" class="firsttext">Enter a ticker</label>
+                    <div class="tooltipdiv1"> 
+                        <input type="text" id="first_input_data" name="first_input_data" class="firstbox" spellcheck="false" placeholder="Check Tooltip for format" role="presentation" autocomplete="off" required>  
+                        <span class="tooltip">i</span>
+                        <span class="tooltiptext">Correct Format: aapl or AAPL</span>
+                    </div>
+                </div>
+                <button type="submit" class="submitbutA">Submit</button>
+            </form>
+            <div class="linebox">
+                <div class="ticks-container">
+                    <div class="ticks-line">
+                        <!-- Permanent black ticks -->
+                        <div class="tick" style="left: 0%;"></div>
+                        <div class="tick" style="left: 25%;"></div>
+                        <div class="tick" style="left: 50%;"></div>
+                        <div class="tick" style="left: 75%;"></div>
+                        <div class="tick" style="left: 99.7%;"></div>
+                        <!-- Conditional red tick -->
+                        {% if analysis == 1 %}
+                        <div class="red-tick red-tick-1"></div>
+                        {% elif analysis == 2 %}
+                        <div class="red-tick red-tick-2"></div>
+                        {% elif analysis == 3 %}
+                        <div class="red-tick red-tick-3"></div>
+                        {% elif analysis == 4 %}
+                        <div class="red-tick red-tick-4"></div>
+                        {% elif analysis == 5 %}
+                        <div class="red-tick red-tick-5"></div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="ticks-labels">
+                    <div class="tick-label-div1"><span class="tick-label">Strong Sell</span></div>
+                    <div class="tick-label-div2"><span class="tick-label">Sell</span></div>
+                    <div class="tick-label-div3"><span class="tick-label">Hold</span></div>
+                    <div class="tick-label-div4"><span class="tick-label">Buy</span></div>
+                    <div class="tick-label-div5"><span class="tick-label">Strong Buy</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            {% if message %}
+                <p class="error-message">{{ message }}</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

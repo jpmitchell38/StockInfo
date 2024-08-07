@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, Response #pip install flask
+from flask import Flask, request, render_template, Response, redirect, url_for #pip install flask
 from datetime import datetime
 import os
 import matplotlib
@@ -13,6 +13,7 @@ tickerL = []
 
 @app.route('/', methods=['GET', 'POST', 'HEAD'])
 def index():
+    message = None
     img_path = None
     
     if request.method == 'HEAD':
@@ -23,13 +24,15 @@ def index():
         data2 = request.form['second_input_data']
 
         if not validate_ticker_format1(data1):
+            message = "Invalid ticker format. Please ensure all tickers are alphabetic"
             return render_template('index.html', 
-                                   message="Invalid ticker format. Please ensure all tickers are alphabetic",
+                                   message=message,
                                    img_path=img_path)
             
         if not validate_ticker_format2(data2):
+            messsage = "Invalid input. Please ensure days back is a number that is greater than 7"
             return render_template('index.html', 
-                                   message = "Invalid input. Please ensure days back is a number that is greater than 7",
+                                   message = messsage,
                                    img_path = img_path)
 
         input = data1.upper()
@@ -40,13 +43,34 @@ def index():
         
         isDataValid, stock = graph(tickerL, days)
         if not isDataValid:
+            message = stock + " is an invalid ticker"
             return render_template('index.html', 
-                                   message = stock + " is an invalid ticker",
+                                   message = message,
                                    img_path = img_path)
                 
                 
-        return render_template('index.html', message="", img_path="myIMG.png")
+        return render_template('index.html', message=message, img_path="myIMG.png")
     return render_template('index.html')
+
+
+@app.route('/analysis', methods=['GET', 'POST'])
+def analysis():
+    average_score = None
+    message = None
+
+    if request.method == 'POST':
+        ticker = request.form.get('first_input_data', '').strip().upper()
+        if not ticker.isalpha():
+            message = "Invalid ticker. Please ensure it is alphabetic."
+        else:
+            average_score = get_recommendation_trends(ticker)
+            if average_score == -1:
+                message = "Invalid ticker"
+
+    try:
+        return render_template('analysis.html', analysis=average_score, message=message)
+    except Exception as e:
+        return "Error rendering template", 500
 
 
 def validate_ticker_format1(ticker_string):

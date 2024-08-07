@@ -1,0 +1,95 @@
+.topA {
+    text-align: center;
+    padding: 40px;
+    margin-left: 15%;
+}
+
+.linebox {
+    padding: 75px 300px;
+}
+
+.ticks-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.ticks-line {
+    flex: 1;
+    height: 2px;
+    background: #000;
+    position: relative;
+}
+
+.tick {
+    position: absolute;
+    top: -15px;
+    width: 3px;
+    height: 15px;
+    background: black;
+}
+
+.tick-red {
+    background: red;
+}
+
+.ticks-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    margin-left: calc(-5% + 0.5px);
+    margin-right: calc(-5% + 0.5px);
+    width: calc(100% + 10%);
+}
+
+.tick-label {
+    flex: 1;
+    text-align: center;
+}
+
+.tick-label span {
+    display: block;
+    font-size: 14px;
+    color: #000;
+}
+
+.tick-label-div2 {
+    margin-left: 0.7%;
+}
+
+.tick-label-div3 {
+    margin-left: 2.2%;
+}
+
+.tick-label-div4 {
+    margin-left: 2.7%;
+}
+
+.red-tick {
+    position: absolute;
+    top: -20px;
+    width: 8px;
+    height: 20px;
+    background: red;
+}
+
+.red-tick-1 {
+    left: 0%;
+}
+
+.red-tick-2 {
+    left: 24.7%;
+}
+
+.red-tick-3 {
+    left: 49.7%;
+}
+
+.red-tick-4 {
+    left: 74.7%;
+}
+
+.red-tick-5 {
+    left: 99.4%;
+}

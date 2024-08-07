@@ -8,7 +8,6 @@
     <link rel="stylesheet" type="text/css" href="styles/tooltip.css">
     <link rel="stylesheet" type="text/css" href="styles/resetPage.css">
     <link rel="stylesheet" type="text/css" href="styles/sidebar.css">
-    <link rel="stylesheet" type="text/css" href="styles/navbar.css">
 </head>
 <body>
     <div class="page">
@@ -18,7 +17,7 @@
             </div>
             <div class="bottomsidebar">
                 <a href="/" class="firstboxside">Home</a>
-                <!-- <a href="/" class="secondboxside">holderplace</a> -->
+                <a href="/analysis" class="secondboxside">Analysis</a>
             </div>
         </div>
 
@@ -27,25 +26,25 @@
                 <h1 class="title">Home</h1>
             </div>
             <form action="" method="POST" class="form">
-                <!-- <div class="bothinputs"> -->
-                    <div class="firstinput">
-                        <label for="first_input_data" class="firsttext">List of Tickers (separated by a comma):</label>
-                        <div class="tooltipdiv1"> 
-                            <input type="text" id="first_input_data" name="first_input_data" class="firstbox" spellcheck="false" placeholder="Check Tooltip for format" role="presentation" autocomplete="off" required>  
-                            <span class="tooltip">i</span>
-                            <span class="tooltiptext">Correct Format: aapl, mcd, tsla</span>
-                        </div>
+                <div class="firstinput">
+                    <label for="first_input_data" class="firsttext">List of Tickers (separated by a comma):</label>
+                    <div class="tooltipdiv1">
+                        <input type="text" id="first_input_data" name="first_input_data" class="firstbox" spellcheck="false"
+                            placeholder="Check Tooltip for format" role="presentation" autocomplete="off" required>
+                        <span class="tooltip">i</span>
+                        <span class="tooltiptext">Correct Format: aapl, mcd, tsla</span>
                     </div>
-                    <div class="secondinput">
-                        <label for="second_input_data" class="secondtext">Days back:</label>
-                        <div class="tooltipdiv2"> 
-                            <input type="text" id="second_input_data" name="second_input_data" class="secondbox" spellcheck="false" placeholder="Enter" role="presentation" autocomplete="off" required>
-                            <span class="tooltip">i</span>
-                            <span class="tooltiptext">Integer greater than 0</span>
-                        </div>
+                </div>
+                <div class="secondinput">
+                    <label for="second_input_data" class="secondtext">Days back:</label>
+                    <div class="tooltipdiv2">
+                        <input type="text" id="second_input_data" name="second_input_data" class="secondbox" spellcheck="false"
+                            placeholder="Enter" role="presentation" autocomplete="off" required>
+                        <span class="tooltip">i</span>
+                        <span class="tooltiptext">Integer greater than 0</span>
                     </div>
-                <!-- </div> -->
-                    <button type="submit" class="submitbut">Submit</button>
+                </div>
+                <button type="submit" class="submitbut">Submit</button>
             </form>
         </div>
         <div class="bottom">
