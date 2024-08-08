@@ -56,6 +56,14 @@ def getStockData(tickers, numOfDays):
 def get_recommendation_trends(symbol):
     recommendation_trends = finnhub_client.recommendation_trends(symbol)
     average_score = -1
+    
+    # Financial Ratios or Price Ratios
+    # stock = yf.Ticker(symbol)
+    # info = stock.info
+    # one = calculatePE(info)
+    # three = get_peg_ratio(info)
+    # four = get_dividend_yield(info)
+    # print("\n\n",symbol,"\nP/E: ", one,"\nPeg ratio: ", three, "\ndividend yield: ", four, "%")
         
     if recommendation_trends:
         most_recent_trend = recommendation_trends[0] 
@@ -100,3 +108,58 @@ def get_recommendation_trends(symbol):
             average_score =  int(average_score) + 1       
     
     return average_score
+
+
+def calculatePE(info):
+#   Traditional Companies: 15-20
+#   Growth Companies: 20-30 or higher
+    pe_ratio = ""
+    try:
+        price = info.get('currentPrice', None)  # Use 'currentPrice' if available
+        eps = info.get('trailingEps', None)  # Use 'trailingEps' for EPS
+
+        if price is None or eps is None:
+            return ""
+        else:
+            pe_ratio = price / eps
+            return pe_ratio
+    except:
+        return ""
+
+
+# PEG Ratio < 1: A PEG ratio below 1 is often considered a sign that the stock might be 
+# undervalued relative to its growth prospects. This means the stock's price is low relative to its earnings growth rate.
+
+# Implications: Negative growth suggests that the company is facing financial difficulties, 
+# declining revenues, or other issues that are causing its earnings to fall.
+def get_peg_ratio(info):
+    try:        
+        # Get P/E ratio and earnings growth rate
+        pe_ratio = info.get('trailingPE')
+        earnings_growth_rate = info.get('earningsQuarterlyGrowth')  # This might be a percentage, so convert accordingly
+        
+        if pe_ratio and earnings_growth_rate:
+            peg_ratio = pe_ratio / (earnings_growth_rate * 100)  # Convert percentage to a decimal
+            return peg_ratio
+        else:
+            return ""
+    except:
+        return ""
+
+# Dividend Yield > 3-4%: A dividend yield of 3% or higher is generally considered attractive, 
+# especially for income-focused investors. However, a very high yield (e.g., 7%+) 
+# may indicate potential risk or a declining stock price.
+def get_dividend_yield(info):
+    try:       
+        # Get annual dividends per share and current price
+        dividend_rate = info.get('dividendRate')  # Annual dividend per share
+        price = info.get('currentPrice')  # Current price per share
+        
+        if dividend_rate and price:
+            dividend_yield = (dividend_rate / price) * 100
+            
+            return dividend_yield
+        else:
+            return ""
+    except:
+        return ""
