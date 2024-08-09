@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="styles/resetPage.css">
     <link rel="stylesheet" type="text/css" href="styles/sidebar.css">
     <link rel="stylesheet" type="text/css" href="styles/line.css">
+    <link rel="stylesheet" type="text/css" href="styles/infoCard.css">
 </head>
 <body>
     <div class="page">
@@ -69,6 +70,32 @@
                 </div>
             </div>
         </div>
+        {% if rounded is not none %}
+            <div class="info-card-div1">
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <span class="info-card-header-text">{{ ticker or 'None' }}</span>
+                    </div>
+                    <div class="info-card-body1">
+                        <span>The average score of ~50 analyst is:</span>
+                        </br>
+                        <span class="number">{{ rounded }}</span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        <div class="info-card-div2">
+            <div class="info-card">
+                <div class="divtext">
+                    <span>Updated 1st of every month</span>
+                </div>
+                </br>
+                <div class="divtextA">
+                    <span>*1 = Strong Sell, 5 = Strong Buy*</span>
+                </div>
+            </div>
+        </div>
+
         <div class="bottom">
             {% if message %}
                 <p class="error-message">{{ message }}</p>

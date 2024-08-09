@@ -57,18 +57,20 @@ def index():
 def analysis():
     average_score = None
     message = None
+    ticker = None
+    rounded = None
 
     if request.method == 'POST':
         ticker = request.form.get('first_input_data', '').strip().upper()
         if not ticker.isalpha():
             message = "Invalid ticker. Please ensure it is alphabetic."
         else:
-            average_score = get_recommendation_trends(ticker)
+            average_score, rounded = get_recommendation_trends(ticker)
             if average_score == -1:
                 message = "Invalid ticker"
 
     try:
-        return render_template('analysis.html', analysis=average_score, message=message)
+        return render_template('analysis.html', analysis=average_score, message=message, ticker=ticker, rounded=rounded)
     except Exception as e:
         return "Error rendering template", 500
 

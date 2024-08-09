@@ -56,6 +56,7 @@ def getStockData(tickers, numOfDays):
 def get_recommendation_trends(symbol):
     recommendation_trends = finnhub_client.recommendation_trends(symbol)
     average_score = -1
+    roundByTwo = None
     
     # Financial Ratios or Price Ratios
     # stock = yf.Ticker(symbol)
@@ -101,13 +102,15 @@ def get_recommendation_trends(symbol):
         )
 
         average_score = weighted_sum / total_count if total_count > 0 else 0
+        roundByTwo = average_score
+        roundByTwo = round(roundByTwo, 2) if total_count > 0 else 0
         
         if average_score - int(average_score) < 0.5:
             average_score =  int(average_score)
         else:
             average_score =  int(average_score) + 1       
     
-    return average_score
+    return average_score, roundByTwo
 
 
 def calculatePE(info):
