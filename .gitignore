@@ -1,0 +1,4 @@
+.env
+__pycache__/
+helperfiles/__pycache__/
+helperfiles/__pycache__/StockConnectAPI.cpython-310.pyc
