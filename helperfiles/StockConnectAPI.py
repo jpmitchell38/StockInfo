@@ -4,6 +4,8 @@ import finnhub
 from dotenv import load_dotenv
 import os
 
+from helperfiles.calculate import *
+
 load_dotenv()
 api_key = os.getenv('FINNHUB_API_KEY')
 finnhub_client = finnhub.Client(api_key=api_key)
@@ -117,6 +119,9 @@ def get_metrics(symbol):
     three = get_dividend_yield(info)
     four = get_profit_margin(info)
     five = get_short_interest(info)
+    
+    six, seven = get_recommendation_trends(symbol)
+    calculateNumber(one, two, four, five, seven, symbol)
     
     # calculate based of a percentage of points, every item gets either 0/1/2
     # or 1/2/3 points, take the total of possible and if its a certain percentage
