@@ -73,6 +73,38 @@ def analysis():
         return render_template('analysis.html', analysis=average_score, message=message, ticker=ticker, rounded=rounded)
     except Exception as e:
         return "Error rendering template", 500
+    
+@app.route('/metrics', methods=['GET', 'POST'])
+def metrics():
+    message = None
+    ticker = None
+    pe = None
+    peg = None
+    div = None
+    profit = None
+    short = None
+
+    if request.method == 'POST':
+        ticker = request.form.get('first_input_data', '').strip().upper()
+        if not ticker.isalpha():
+            message = "Invalid ticker. Please ensure it is alphabetic."
+        else:
+            pe, peg, div, profit, short= get_metrics(ticker)
+            if pe is not None:
+                pe = round(pe, 2)
+            if peg is not None:
+                peg = round(peg, 2)
+            if div is not None:
+                div = round(div, 2)
+            if profit is not None:
+                profit = round(profit, 2)
+            if short is not None:
+                short = round(short, 2)
+
+    try:
+        return render_template('metrics.html', message=message, ticker=ticker, pe=pe, peg=peg, div=div, profit=profit, short=short)
+    except Exception as e:
+        return "Error rendering template", 500
 
 
 def validate_ticker_format1(ticker_string):

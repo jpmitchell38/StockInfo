@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StockInfo</title>
+    <link rel="stylesheet" type="text/css" href="styles/mainStyles.css">
+    <link rel="stylesheet" type="text/css" href="styles/tooltip.css">
+    <link rel="stylesheet" type="text/css" href="styles/resetPage.css">
+    <link rel="stylesheet" type="text/css" href="styles/sidebar.css">
+    <link rel="stylesheet" type="text/css" href="styles/line.css">
+    <link rel="stylesheet" type="text/css" href="styles/infoCard.css">
+    <link rel="stylesheet" type="text/css" href="styles/metricStyles.css">
+</head>
+<body>
+    <div class="page">
+        <div class="sidebar">
+            <div class="topsidebar">
+                <h1 class="title_sidebar">StockInfo</h1>
+                </br>
+                <span>Made By: JP Mitchell</span>
+            </div>
+            <div class="bottomsidebar">
+                <a href="/" class="firstboxside">Grahing</a>
+                <a href="/analysis" class="secondboxside">Analysis</a>
+                <a href="/metrics" class="thirdboxside">Metrics</a>
+            </div>
+        </div>
+
+        <div class="topA">
+            <div class="titlediv">
+                <h1 class="title">Metrics</h1>
+            </div>
+            <form action="/metrics" method="POST" class="form">
+                <div class="firstinput">
+                    <label for="first_input_data" class="firsttext">Enter a ticker</label>
+                    <div class="tooltipdiv1"> 
+                        <input type="text" id="first_input_data" name="first_input_data" class="firstbox" spellcheck="false" placeholder="Check Tooltip for format" role="presentation" autocomplete="off" required>  
+                        <span class="tooltip">i</span>
+                        <span class="tooltiptext">Correct Format: aapl or AAPL</span>
+                    </div>
+                </div>
+                <button type="submit" class="submitbutA">Submit</button>
+            </form>
+            {% if ticker is not none and pe is not none and peg is not none and div is not none and profit is not none and short is not none%}
+                <div class="metrics-container">
+                    {% if ticker is not none %}
+                        <h1 class="ticker">{{ ticker }}</h1>
+                    {% endif %}
+                    <div class="metrics-details">
+                        {% if pe is not none %}
+                            <div class="metric-item">
+                                <span class="label">PE Ratio:</span> <span class="value">{{ pe }}</span>
+                            </div>
+                        {% endif %}
+                        {% if peg is not none %}
+                            <div class="metric-item">
+                                <span class="label">PEG Ratio:</span> <span class="value">{{ peg }}</span>
+                            </div>
+                        {% endif %}
+                        {% if div is not none %}
+                            <div class="metric-item">
+                                <span class="label">Dividend:</span> <span class="value">{{ div }}%</span>
+                            </div>
+                        {% endif %}
+                        {% if profit is not none %}
+                            <div class="metric-item">
+                                <span class="label">Profit Margin:</span> <span class="value">{{ profit }}%</span>
+                            </div>
+                        {% endif %}
+                        {% if short is not none %}
+                            <div class="metric-item">
+                                <span class="label">Short Interest:</span> <span class="value">{{ short }}%</span>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

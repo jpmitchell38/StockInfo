@@ -57,14 +57,6 @@ def get_recommendation_trends(symbol):
     recommendation_trends = finnhub_client.recommendation_trends(symbol)
     average_score = -1
     roundByTwo = None
-    
-    # Financial Ratios or Price Ratios
-    # stock = yf.Ticker(symbol)
-    # info = stock.info
-    # one = calculatePE(info)
-    # three = get_peg_ratio(info)
-    # four = get_dividend_yield(info)
-    # print("\n\n",symbol,"\nP/E: ", one,"\nPeg ratio: ", three, "\ndividend yield: ", four, "%")
         
     if recommendation_trends:
         most_recent_trend = recommendation_trends[0] 
@@ -112,22 +104,38 @@ def get_recommendation_trends(symbol):
     
     return average_score, roundByTwo
 
+def get_metrics(symbol):
+    stock = yf.Ticker(symbol)
+    info = stock.info
+    
+    one = calculatePE(info)
+    two = get_peg_ratio(info)
+    three = get_dividend_yield(info)
+    four = get_profit_margin(info)
+    five = get_short_interest(info)
+    
+    return one, two, three, four, five
+    
+    # print("\n\n",symbol,"\nP/E: ", one,"\nPeg ratio: ", two, "\ndividend yield: ", three, "%", "\nprofit margin: ", four, "\nshort intrest ", five)
 
-def calculatePE(info):
+
+
 #   Traditional Companies: 15-20
 #   Growth Companies: 20-30 or higher
+# great is 15-25, okay is 10 on either side, rest is bad
+def calculatePE(info):
     pe_ratio = ""
     try:
         price = info.get('currentPrice', None)  # Use 'currentPrice' if available
         eps = info.get('trailingEps', None)  # Use 'trailingEps' for EPS
 
         if price is None or eps is None:
-            return ""
+            return None
         else:
             pe_ratio = price / eps
             return pe_ratio
     except:
-        return ""
+        return None
 
 
 # PEG Ratio < 1: A PEG ratio below 1 is often considered a sign that the stock might be 
@@ -135,19 +143,25 @@ def calculatePE(info):
 
 # Implications: Negative growth suggests that the company is facing financial difficulties, 
 # declining revenues, or other issues that are causing its earnings to fall.
+
+# 0-1 is great, 1-4 is okay, anything else is bad
 def get_peg_ratio(info):
-    try:        
-        # Get P/E ratio and earnings growth rate
+    try:
         pe_ratio = info.get('trailingPE')
-        earnings_growth_rate = info.get('earningsQuarterlyGrowth')  # This might be a percentage, so convert accordingly
+        earnings_growth_rate = info.get('earningsGrowth')
         
-        if pe_ratio and earnings_growth_rate:
-            peg_ratio = pe_ratio / (earnings_growth_rate * 100)  # Convert percentage to a decimal
+        if pe_ratio is not None and earnings_growth_rate is not None:
+            
+            earnings_growth_rate *= 100
+            peg_ratio = pe_ratio / earnings_growth_rate
+            
             return peg_ratio
         else:
-            return ""
-    except:
-        return ""
+            return None
+    
+    except Exception as e:
+        return None
+
 
 # Dividend Yield > 3-4%: A dividend yield of 3% or higher is generally considered attractive, 
 # especially for income-focused investors. However, a very high yield (e.g., 7%+) 
@@ -163,6 +177,39 @@ def get_dividend_yield(info):
             
             return dividend_yield
         else:
-            return ""
+            return None
     except:
-        return ""
+        return None
+
+    
+# How to Use: Compare with industry averages. Higher margins suggest better cost control and pricing power.
+# 21%+ is great, 10-20% is good, below 10% is bad
+def get_profit_margin(info):
+    try:
+        # Get net income and total revenue
+        net_income = info.get('netIncomeToCommon')
+        total_revenue = info.get('totalRevenue')
+        
+        if net_income and total_revenue:
+            profit_margin = (net_income / total_revenue) * 100
+            return profit_margin
+        else:
+            return None
+    except:
+        return None
+    
+# How to Use: High short interest might signal negative sentiment or potential for a short squeeze.
+# below 5% is low risk, 5-15 is moderate, 15+ is high
+def get_short_interest(info):
+    try:
+        # Get shares short and average daily volume
+        shares_short = info.get('sharesShort')
+        average_daily_volume = info.get('averageVolume')
+        
+        if shares_short and average_daily_volume:
+            short_interest_ratio = shares_short / average_daily_volume
+            return short_interest_ratio
+        else:
+            return None
+    except:
+        return None
