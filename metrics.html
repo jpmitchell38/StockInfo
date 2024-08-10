@@ -40,14 +40,21 @@
                         <span class="tooltiptext">Correct Format: aapl or AAPL</span>
                     </div>
                 </div>
-                <button type="submit" class="submitbutA">Submit</button>
+                <button type="submit" class="submitbutM">Submit</button>
             </form>
-            {% if ticker is not none and pe is not none and peg is not none and div is not none and profit is not none and short is not none%}
+            {% if ticker is not none and isValid is not none %}
                 <div class="metrics-container">
-                    {% if ticker is not none %}
-                        <h1 class="ticker">{{ ticker }}</h1>
-                    {% endif %}
+                    <div class="metrics-container-header">
+                        {% if ticker is not none %}
+                            <h1 class="ticker">{{ ticker }}</h1>
+                        {% endif %}
+                    </div>
                     <div class="metrics-details">
+                        {% if price is not none %}
+                            <div class="metric-item">
+                                <span class="label">Price:</span> <span class="value">{{ price }}</span>
+                            </div>
+                        {% endif %}
                         {% if pe is not none %}
                             <div class="metric-item">
                                 <span class="label">PE Ratio:</span> <span class="value">{{ pe }}</span>
@@ -75,6 +82,11 @@
                         {% endif %}
                     </div>
                 </div>
+            {% endif %}
+        </div>
+        <div class="bottom">
+            {% if message %}
+                <p class="error-message">{{ message }}</p>
             {% endif %}
         </div>
     </div>

@@ -108,16 +108,21 @@ def get_metrics(symbol):
     stock = yf.Ticker(symbol)
     info = stock.info
     
+    if len(info) == 1:
+        return None, None, None, None, None, False, None
+    
+    price = info.get('currentPrice', None)
     one = calculatePE(info)
     two = get_peg_ratio(info)
     three = get_dividend_yield(info)
     four = get_profit_margin(info)
     five = get_short_interest(info)
     
-    return one, two, three, four, five
+    # calculate based of a percentage of points, every item gets either 0/1/2
+    # or 1/2/3 points, take the total of possible and if its a certain percentage
+    # (like 75% of the points or more its a buy)
     
-    # print("\n\n",symbol,"\nP/E: ", one,"\nPeg ratio: ", two, "\ndividend yield: ", three, "%", "\nprofit margin: ", four, "\nshort intrest ", five)
-
+    return one, two, three, four, five, True, price
 
 
 #   Traditional Companies: 15-20
