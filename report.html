@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="styles/tooltip.css">
     <link rel="stylesheet" type="text/css" href="styles/resetPage.css">
     <link rel="stylesheet" type="text/css" href="styles/sidebar.css">
+    <link rel="stylesheet" type="text/css" href="styles/metricStyles.css">
 </head>
 <body>
     <div class="page">
@@ -27,7 +28,7 @@
 
         <div class="top">
             <div class="titlediv">
-                <h1 class="title">Graphing</h1>
+                <h1 class="title">Generate Report</h1>
             </div>
             <form action="" method="POST" class="form">
                 <div class="firstinput">
@@ -39,27 +40,21 @@
                         <span class="tooltiptext">Correct Format: aapl, mcd, tsla</span>
                     </div>
                 </div>
-                <div class="secondinput">
-                    <label for="second_input_data" class="secondtext">Days back:</label>
-                    <div class="tooltipdiv2">
-                        <input type="text" id="second_input_data" name="second_input_data" class="secondbox" spellcheck="false"
-                            placeholder="Enter" role="presentation" autocomplete="off" required>
-                        <span class="tooltip">i</span>
-                        <span class="tooltiptext">Integer greater than 0</span>
-                    </div>
-                </div>
-                <button type="submit" class="submitbut">Submit</button>
+                <button type="submit" class="submitbutM">Submit</button>
             </form>
         </div>
+
         <div class="bottom">
             {% if message %}
                 <p class="error-message">{{ message }}</p>
             {% endif %}
-            {% if img_path %}
-                <img src="{{ img_path }}" alt="Stock Graph" class="img" onerror="this.style.display='none';">
+            {% if csv_data %}
+                <form action="/download" method="GET">
+                    <input type="hidden" name="csv_data" value="{{ csv_data | e }}">
+                    <button type="submit">Download Report</button>
+                </form>
             {% endif %}
         </div>
     </div>
 </body>
 </html>
-

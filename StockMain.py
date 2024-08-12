@@ -1,7 +1,12 @@
-from flask import Flask, request, render_template, Response, redirect, url_for #pip install flask
+from flask import Flask, request, render_template, Response, redirect, url_for, send_from_directory
+#pip install flask
 from datetime import datetime
 import os
+import io
 import matplotlib
+import csv
+import tempfile
+import time
 
 matplotlib.use('Agg') 
 
@@ -10,6 +15,9 @@ from helperfiles.StockOutputs import *
 
 app = Flask(__name__, template_folder='.', static_url_path='', static_folder='')
 tickerL = []
+
+TEMP_UPLOAD_FOLDER = tempfile.mkdtemp()
+
 
 @app.route('/', methods=['GET', 'POST', 'HEAD'])
 def index():
@@ -113,6 +121,49 @@ def metrics():
     except Exception as e:
         return "Error rendering template", 500
 
+@app.route('/report', methods=['GET', 'POST'])
+def report():
+    message = None
+    csv_data = None
+    
+    if request.method == 'POST':
+        data1 = request.form['first_input_data']
+        
+        if not validate_ticker_format1(data1):
+            message = "Invalid ticker format. Please ensure all tickers are alphabetic"
+            return render_template('report.html', message=message)
+        
+        input = data1.upper()
+        input = input.replace(" ", "")
+        tickerL = input.split(",")
+        
+        try:
+            data = getReport(tickerL)
+            if data == "":
+                message = "Invalid ticker"
+            else:
+                csv_output = io.StringIO()
+                csv_writer = csv.writer(csv_output)
+                csv_writer.writerows(data)
+                csv_output.seek(0)
+                csv_data = csv_output.getvalue() 
+        except:
+            message = "Request timed out"
+    
+    return render_template('report.html', message=message, csv_data=csv_data)
+
+@app.route('/download')
+def download_file():
+    csv_data = request.args.get('csv_data')
+    
+    if not csv_data:
+        return "No file data found", 400
+
+    return Response(
+        csv_data,
+        mimetype='text/csv',
+        headers={"Content-Disposition": "attachment;filename=report.csv"}
+    )
 
 def validate_ticker_format1(ticker_string):
     tickers = ticker_string.split(',')

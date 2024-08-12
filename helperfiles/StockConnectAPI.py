@@ -120,24 +120,42 @@ def get_metrics(symbol):
     four = get_profit_margin(info)
     five = get_short_interest(info)
     
-    six, seven = get_recommendation_trends(symbol)
-    calculateNumber(one, two, four, five, seven, symbol)
-    
-    # calculate based of a percentage of points, every item gets either 0/1/2
-    # or 1/2/3 points, take the total of possible and if its a certain percentage
-    # (like 75% of the points or more its a buy)
-    
     return one, two, three, four, five, True, price
 
 
 #   Traditional Companies: 15-20
 #   Growth Companies: 20-30 or higher
 # great is 15-25, okay is 10 on either side, rest is bad
+
+def getReport(tickerL):
+    data = []
+    for symbol in tickerL:
+        stock = yf.Ticker(symbol)
+        info = stock.info
+        
+        if len(info) == 1:
+            return ""
+        
+        pe = calculatePE(info)
+        peg = get_peg_ratio(info)
+        profit = get_profit_margin(info)
+        short = get_short_interest(info)
+        
+        _ , analystRec = get_recommendation_trends(symbol)
+        shouldBuy = calculateNumber(pe, peg, profit, short, analystRec, symbol)
+        
+        listHold = []
+        listHold.append(symbol)
+        listHold.append(shouldBuy)
+        data.append(listHold)
+        
+    return data
+
 def calculatePE(info):
     pe_ratio = ""
     try:
-        price = info.get('currentPrice', None)  # Use 'currentPrice' if available
-        eps = info.get('trailingEps', None)  # Use 'trailingEps' for EPS
+        price = info.get('currentPrice', None) 
+        eps = info.get('trailingEps', None) 
 
         if price is None or eps is None:
             return None
@@ -179,8 +197,8 @@ def get_peg_ratio(info):
 def get_dividend_yield(info):
     try:       
         # Get annual dividends per share and current price
-        dividend_rate = info.get('dividendRate')  # Annual dividend per share
-        price = info.get('currentPrice')  # Current price per share
+        dividend_rate = info.get('dividendRate')
+        price = info.get('currentPrice') 
         
         if dividend_rate and price:
             dividend_yield = (dividend_rate / price) * 100

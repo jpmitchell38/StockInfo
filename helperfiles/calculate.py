@@ -5,6 +5,7 @@
 # 11 and below is no buy
 def calculateNumber(pe, peg, profit, short, analystScore, symbol):
     totalScore = 0
+    count = 0
     
     #calculate pe
     if pe is not None:
@@ -14,6 +15,7 @@ def calculateNumber(pe, peg, profit, short, analystScore, symbol):
             totalScore += 2
         else:
             totalScore += 1
+        count += 1
 
            
     #calculate peg
@@ -24,6 +26,7 @@ def calculateNumber(pe, peg, profit, short, analystScore, symbol):
             totalScore += 2
         else:
             totalScore += 1
+        count += 1
             
     #calculate profit
     if profit is not None:
@@ -33,6 +36,7 @@ def calculateNumber(pe, peg, profit, short, analystScore, symbol):
             totalScore += 2
         else:
             totalScore += 1
+        count += 1
         
     #calculate short
     if short is not None:
@@ -42,6 +46,7 @@ def calculateNumber(pe, peg, profit, short, analystScore, symbol):
             totalScore += 2
         else:
             totalScore += 1
+        count += 1
             
     #calculate average analyst score
     if analystScore is not None:
@@ -51,5 +56,34 @@ def calculateNumber(pe, peg, profit, short, analystScore, symbol):
             totalScore += 2
         else:
             totalScore += 1
+        count += 1
         
-    print(symbol, ":", totalScore)
+    # print(symbol, ":", totalScore)
+    
+    if count == 5:
+        if totalScore >= 14:
+            return "Strong Buy"
+        elif totalScore == 13:
+            return "Buy"
+        elif totalScore == 12:
+            return "Maybe"
+        else:
+            return "No Buy"
+    elif count == 4:
+        if totalScore >= 11:
+            return "Strong Buy"
+        elif totalScore == 10:
+            return "Buy"
+        elif totalScore == 9:
+            return "Maybe"
+        else:
+            return "No Buy"
+    elif count == 3:
+        if totalScore == 9:
+            return "Strong Buy"
+        elif totalScore == 8:
+            return "Buy"
+        else:
+            return "No Buy"
+    else:
+        return "No Buy"
