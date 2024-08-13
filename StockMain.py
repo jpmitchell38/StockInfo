@@ -139,7 +139,7 @@ def report():
         
         try:
             data = getReport(tickerL)
-            if data == "":
+            if len(data) == 0:
                 message = "Invalid ticker"
             else:
                 csv_output = io.StringIO()

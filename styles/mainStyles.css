@@ -96,6 +96,25 @@
     cursor: pointer;
 }
 
+.submitbut:hover, .submitbutA:hover, .submitbutM:hover {
+    background-color: beige;
+}
+
+.submitbutGR:hover {
+    background-color: lightgrey;
+}
+
+.submitbutGR {
+    width: 160px;
+    height: 80px;
+    font-size: x-large;
+    color: #101010;
+    font-weight: bold;
+    border: 2px solid #101010;
+    background-color: #ddd;
+    cursor: pointer;
+}
+
 .submitbutA {
     margin-top: 35px;
 }

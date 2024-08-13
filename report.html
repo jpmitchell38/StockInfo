@@ -51,7 +51,7 @@
             {% if csv_data %}
                 <form action="/download" method="GET">
                     <input type="hidden" name="csv_data" value="{{ csv_data | e }}">
-                    <button type="submit">Download Report</button>
+                    <button type="submit" class="submitbutGR">Download Report</button>
                 </form>
             {% endif %}
         </div>

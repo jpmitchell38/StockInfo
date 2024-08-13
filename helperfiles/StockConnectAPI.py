@@ -134,20 +134,21 @@ def getReport(tickerL):
         info = stock.info
         
         if len(info) == 1:
-            return ""
+            pass
         
-        pe = calculatePE(info)
-        peg = get_peg_ratio(info)
-        profit = get_profit_margin(info)
-        short = get_short_interest(info)
-        
-        _ , analystRec = get_recommendation_trends(symbol)
-        shouldBuy = calculateNumber(pe, peg, profit, short, analystRec, symbol)
-        
-        listHold = []
-        listHold.append(symbol)
-        listHold.append(shouldBuy)
-        data.append(listHold)
+        else:
+            pe = calculatePE(info)
+            peg = get_peg_ratio(info)
+            profit = get_profit_margin(info)
+            short = get_short_interest(info)
+            
+            _ , analystRec = get_recommendation_trends(symbol)
+            shouldBuy = calculateNumber(pe, peg, profit, short, analystRec, symbol)
+            
+            listHold = []
+            listHold.append(symbol)
+            listHold.append(shouldBuy)
+            data.append(listHold)
         
     return data
 
