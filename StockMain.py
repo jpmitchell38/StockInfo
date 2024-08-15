@@ -1,17 +1,16 @@
-from flask import Flask, request, render_template, Response, redirect, url_for, send_from_directory
-#pip install flask
-from datetime import datetime
 import os
 import io
 import matplotlib
 import csv
 import tempfile
-import time
+import base64
 
-matplotlib.use('Agg') 
-
+from flask import Flask, request, render_template, Response
+from datetime import datetime
 from helperfiles.StockConnectAPI import *
 from helperfiles.StockOutputs import *
+
+matplotlib.use('Agg') 
 
 app = Flask(__name__, template_folder='.', static_url_path='', static_folder='')
 tickerL = []
@@ -49,16 +48,16 @@ def index():
         
         days = data2
         
-        isDataValid, stock = graph(tickerL, days)
+        img_bytes, isDataValid, stock = graph(tickerL, days)
         if not isDataValid:
             message = stock + " is an invalid ticker"
             return render_template('index.html', 
-                                   message = message,
-                                   img_path = img_path)
+                                   message=message,
+                                   img_path=img_path)
                 
-                
-        return render_template('index.html', message=message, img_path="myIMG.png")
-    return render_template('index.html')
+        if img_bytes:
+            return render_template('index.html', message=message, img_data=img_bytes.getvalue())
+    return render_template('index.html', img_path=img_path)
 
 
 @app.route('/analysis', methods=['GET', 'POST'])
@@ -164,6 +163,10 @@ def download_file():
         mimetype='text/csv',
         headers={"Content-Disposition": "attachment;filename=report.csv"}
     )
+    
+@app.template_filter('b64encode')
+def b64encode(data):
+    return base64.b64encode(data).decode('utf-8')
 
 def validate_ticker_format1(ticker_string):
     tickers = ticker_string.split(',')

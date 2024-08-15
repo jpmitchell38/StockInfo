@@ -1,4 +1,5 @@
-import matplotlib.pyplot as plt #pip install matplotlib
+import io
+import matplotlib.pyplot as plt
 
 from helperfiles.StockConnectAPI import *
 
@@ -29,7 +30,7 @@ def graph(listOfTickers, days):
 
     validData, stock_data, badTicker = getStockData(listOfTickers, days)
     if (not validData):
-        return False, badTicker
+        return "", False, badTicker
 
     count = 0
     for stock in stock_data:
@@ -78,7 +79,11 @@ def graph(listOfTickers, days):
         count += 1
 
     plt.tight_layout()
-    plt.savefig('myIMG.png')
+    
+    img_bytes = io.BytesIO()
+    plt.savefig(img_bytes, format='png')
+    img_bytes.seek(0)
     plt.close('all')
-    return True, ""
+
+    return img_bytes, True, ""
 
