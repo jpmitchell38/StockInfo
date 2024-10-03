@@ -1,6 +1,6 @@
 # StockInfo
 
-**Link to the website:** https://stockinfo-dtbq.onrender.com
+<!-- **Link to the website:** https://stockinfo-dtbq.onrender.com -->
 
 This project has multiple pages you could visit. The Graphing page allows users to input a list of stocks and specify the number of days back from which to retrieve data. It fetches this data and presents four insightful graphs: Closing Price vs Time, Closing Price vs Volume, Volume vs Time, and High-Low Range vs Time. The Analysis page allows users to input a stock ticker to retrieve and visualize stock analysis data. Once a ticker is submitted, the page fetches data from approximately 50 analysts who have evaluated the stock. This information is then represented on a line graph, showcasing the average rating consensus. The ratings are categorized into five distinct levels: Strong Sell, Sell, Hold, Buy, and Strong Buy. The Metrics page allows users to enter a stock ticker to view various financial metrics. The page displays key indicators such as the current price, P/E ratio, PEG ratio, dividend yield, profit margin, and short interest, providing a comprehensive overview of the stock’s financial health.
  <!-- The Generate Report page enables users to input a list of stocks for evaluation. Based on specific metrics, it assesses each stock and categorizes it as Strong Buy, Buy, Maybe, or No Buy. The results are compiled into a downloadable CSV file, accessible via a button that appears once the report is generated. -->
